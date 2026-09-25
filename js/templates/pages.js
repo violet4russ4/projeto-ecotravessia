@@ -144,7 +144,7 @@ function renderVoluntario() {
                         autocomplete="name"
                         aria-describedby="erro-nome"
                         required>
-                    <span class="mensagem-campo" id="erro-nome"></span>
+                    <span class="mensagem-campo" id="erro-nome" aria-live="polite"></span>
                 </div>
                 <div class="campo">
                     <label for="email">E-mail <span aria-hidden="true">*</span></label>
@@ -155,7 +155,7 @@ function renderVoluntario() {
                         autocomplete="email"
                         aria-describedby="erro-email"
                         required>
-                    <span class="mensagem-campo" id="erro-email"></span>
+                    <span class="mensagem-campo" id="erro-email" aria-live="polite"></span>
                 </div>
                 <div class="campo">
                     <label for="telefone">Telefone (opcional)</label>
@@ -166,7 +166,7 @@ function renderVoluntario() {
                         autocomplete="tel"
                         inputmode="tel"
                         aria-describedby="erro-telefone">
-                    <span class="mensagem-campo" id="erro-telefone"></span>
+                    <span class="mensagem-campo" id="erro-telefone" aria-live="polite"></span>
                 </div>
                 <p class="aviso-privacidade">
                     Este protótipo guarda o último cadastro somente neste navegador;
