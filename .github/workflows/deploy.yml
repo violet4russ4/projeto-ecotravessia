@@ -1,0 +1,67 @@
+name: Build e publicar EcoTravessia
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  preparar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v6
+
+      - name: Preparar Node para a minificação
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Montar e minificar o site estático
+        run: |
+          mkdir -p _site/css _site/js
+          cp index.html _site/index.html
+          cp -R html imagens _site/
+          npx --yes esbuild@0.28.2 \
+            js/app.js js/data.js \
+            js/modules/feedback.js js/modules/form.js \
+            js/modules/navigation.js js/modules/router.js js/modules/storage.js \
+            js/templates/pages.js \
+            --minify --outbase=js --outdir=_site/js
+          npx --yes esbuild@0.28.2 css/style.css --minify --outfile=_site/css/style.css
+          test -f _site/html/index.html
+          test -f _site/css/style.css
+          test -f _site/js/app.js
+          test -f _site/imagens/Ecotravessia-otimizada.jpg
+
+      - name: Preparar GitHub Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+
+      - name: Enviar artefato do site
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  publicar:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    environment:
+      name: github-pages
+    runs-on: ubuntu-latest
+    needs: preparar
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Publicar no GitHub Pages
+        uses: actions/deploy-pages@v4
