@@ -58,7 +58,7 @@ Não foram adicionadas bibliotecas de interface; o JavaScript da aplicação é 
 
 css/style.css define cores primárias, secundárias, neutras, estados e foco por variáveis CSS; a tipografia tem cinco níveis e os espaçamentos seguem uma escala modular baseada em 8 px. O Grid de doze colunas compõe as áreas principais. Flexbox alinha .cabecalho-conteudo, .identidade, .menu, .hero-acoes, #formulario-voluntario, .campo, notificações e .footer-conteudo.
 
-Há seis pontos responsivos em 1200, 1199, 1024, 768, 480 e 320 px. Os controles têm estados hover, focus, active e disabled; formulários sinalizam estados válidos e inválidos; o toast e os alertas seguem as cores do sistema visual. A navegação inclui link para saltar ao conteúdo, labels, foco visível, suporte a teclado, landmarks semânticos e respeito a prefers-reduced-motion.
+Há seis pontos responsivos em 1200, 1199, 1024, 768, 480 e 320 px. Em telas estreitas, cabeçalho, conteúdo e rodapé são contidos na largura do viewport, o menu passa para navegação vertical e textos/itens longos podem quebrar sem gerar rolagem horizontal. Os controles têm estados hover, focus, active e disabled; formulários sinalizam estados válidos e inválidos; o toast e os alertas seguem as cores do sistema visual. A navegação inclui link para saltar ao conteúdo, labels, foco visível, suporte a teclado, landmarks semânticos e respeito a prefers-reduced-motion.
 
 As combinações principais de texto e fundo foram verificadas com o [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/), usando os códigos hexadecimais da paleta. Resultados: texto principal `#263238` sobre `#f5f7f5`, 12,22:1; texto branco `#ffffff` no botão primário verde `#2e7d32`, 5,12:1; texto verde-escuro `#1b5e20` no botão secundário branco `#ffffff`, 7,86:1; texto `#263238` no botão de destaque âmbar `#ffa000`, 6,44:1; texto branco no hover âmbar-escuro `#864900`, 7,07:1; etiqueta verde-escura `#1b5e20` sobre verde-claro `#a5d6a7`, 4,78:1; erro `#a61b1b` sobre fundo `#fdecec`, 6,58:1; sucesso `#164b25` sobre fundo `#e5f4e8`, 8,91:1. As combinações de texto comum listadas superam 4,5:1, mínimo do critério WCAG 2.1 AA 1.4.3. A revisão com leitor de ecrã e zoom ainda precisa ser concluída.
 
@@ -79,3 +79,10 @@ O projeto segue um fluxo GitFlow simplificado: `main` contém a versão publicad
 ## Versionamento de releases
 
 As versões usam Semantic Versioning (`MAJOR.MINOR.PATCH`), e cada release é identificada por uma tag no formato `vMAJOR.MINOR.PATCH`.
+
+
+## Revisão responsiva final
+
+Após a publicação inicial, a versão mobile apresentou desalinhamento visual nas extremidades superior e inferior da página causado por conteúdo que podia ultrapassar a largura disponível. A revisão final adiciona contenção horizontal no documento, permite quebra segura de textos e itens de navegação e garante que o cabeçalho e o rodapé ocupem somente a largura do viewport.
+
+A correção foi aplicada em `css/style.css` e registrada no commit `fix: corrige overflow horizontal no responsivo mobile`. A validação final deve ser feita novamente no navegador móvel após a publicação, incluindo a abertura do menu, a navegação pelas rotas, o formulário e a rolagem vertical completa.
