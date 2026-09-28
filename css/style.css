@@ -995,3 +995,88 @@ main,
         overflow-wrap: anywhere;
     }
 }
+
+
+/* Correção final de overflow em telas de smartphone.
+   Itens de Grid precisam poder encolher abaixo do tamanho de conteúdo. */
+.hero,
+.hero-imagem-wrap,
+.hero-conteudo,
+.secao-destaque,
+.secao-destaque > div,
+.secao-destaque > a,
+.pagina-cabecalho,
+.cartao-informativo,
+.secao-formulario,
+.cartao-contato,
+.secao-impacto,
+.cartao-projeto,
+.cartao-impacto {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.hero-conteudo,
+.hero-imagem-wrap,
+.pagina-cabecalho {
+    width: 100%;
+}
+
+.hero-conteudo h1,
+.hero-conteudo p,
+.pagina-cabecalho h1,
+.pagina-cabecalho > p,
+.texto-introdutorio,
+.cartao-informativo p,
+.cartao-projeto h2,
+.cartao-projeto p,
+.secao-impacto h1,
+.secao-impacto p {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 768px) {
+    main.container,
+    #app,
+    #app > section {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #app > section {
+        overflow: hidden;
+    }
+
+    .hero,
+    .secao-destaque {
+        width: 100%;
+    }
+
+    .hero-conteudo {
+        width: 100%;
+        padding-inline: 0;
+    }
+
+    .hero-conteudo h1 {
+        font-size: clamp(1.9rem, 8vw, 2.25rem);
+    }
+
+    .hero-conteudo p {
+        font-size: clamp(1.05rem, 4.8vw, 1.25rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-conteudo h1,
+    .pagina-cabecalho h1 {
+        overflow-wrap: anywhere;
+        word-break: normal;
+    }
+
+    .hero-conteudo p,
+    .pagina-cabecalho > p {
+        overflow-wrap: anywhere;
+    }
+}
