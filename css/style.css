@@ -898,3 +898,100 @@ main {
         margin: var(--espaco-2) auto;
     }
 }
+
+
+/* Ajustes finais de responsividade: evita que cabeçalho, conteúdo ou rodapé
+   criem largura horizontal extra em telas estreitas. */
+html,
+body {
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+.container,
+.cabecalho-conteudo,
+.footer-conteudo,
+.header nav,
+.menu,
+main,
+#app,
+#app > section {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.identidade,
+.identidade-frase,
+.menu li,
+.menu a,
+.dropdown,
+.dropdown-toggle,
+.submenu,
+.footer-conteudo > div,
+.footer-conteudo > p {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.header,
+.footer {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: calc(100% - 2rem);
+    }
+
+    .header {
+        padding-block: var(--espaco-2);
+    }
+
+    .cabecalho-conteudo {
+        width: calc(100% - 2rem);
+        gap: var(--espaco-2);
+    }
+
+    .identidade {
+        max-width: 100%;
+    }
+
+    .identidade-frase {
+        max-width: 24rem;
+    }
+
+    .menu {
+        width: 100%;
+    }
+
+    .menu a,
+    .dropdown-toggle {
+        padding-inline: var(--espaco-2);
+    }
+
+    .footer-conteudo {
+        width: calc(100% - 2rem);
+    }
+
+    .footer-conteudo > div,
+    .footer-conteudo > p {
+        width: 100%;
+    }
+
+    .footer address,
+    .footer p {
+        overflow-wrap: anywhere;
+    }
+}
+
+@media (max-width: 480px) {
+    .container,
+    .cabecalho-conteudo,
+    .footer-conteudo {
+        width: calc(100% - 1.5rem);
+    }
+
+    h1 {
+        overflow-wrap: anywhere;
+    }
+}
