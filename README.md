@@ -68,7 +68,7 @@ A pasta `imagens` contém o PNG original e uma versão JPG otimizada, reduzida d
 
 ## Verificações e problemas corrigidos
 
-A página foi aberta por servidor HTTP local e a versão publicada foi conferida no navegador. Foram verificados os links da navegação, a abertura do submenu com Enter, o fechamento com Escape, a navegação até o formulário pelo teclado, os rótulos dos campos e a validação: ao enviar vazio, o foco vai para o nome e `aria-invalid` é atualizado. A árvore de acessibilidade do navegador expõe landmarks, links, botões e campos com nomes acessíveis. A avaliação com leitor de ecrã real e zoom ainda precisa ser feita.
+A página foi aberta por servidor HTTP local e a versão publicada foi conferida no navegador. Foram verificados os links da navegação, a abertura do submenu com Enter, o fechamento com Escape, a navegação até o formulário pelo teclado, os rótulos dos campos e a validação: ao enviar vazio, o foco vai para o nome e `aria-invalid` é atualizado. A árvore de acessibilidade do navegador expõe landmarks, links, botões e campos com nomes acessíveis. A avaliação com leitor de ecrã real e zoom permanece como etapa complementar de validação e não é apresentada como concluída sem evidência de teste.
 
 Um problema de inicialização acontecia porque a imagem era importada como módulo JavaScript, recurso que exige transformação de build. A referência foi trocada por uma URL relativa baseada em import.meta.url, que funciona no Live Server e preserva a imagem otimizada.
 
@@ -78,11 +78,11 @@ O projeto segue um fluxo GitFlow simplificado: `main` contém a versão publicad
 
 ## Versionamento de releases
 
-As versões usam Semantic Versioning (`MAJOR.MINOR.PATCH`), e cada release é identificada por uma tag no formato `vMAJOR.MINOR.PATCH`.
+Quando houver releases versionadas, o projeto segue Semantic Versioning (`MAJOR.MINOR.PATCH`) e utiliza tags no formato `vMAJOR.MINOR.PATCH`. Os commits de correção e documentação usam mensagens semânticas.
 
 
 ## Revisão responsiva final
 
-Após a publicação inicial, a versão mobile apresentou desalinhamento visual nas extremidades superior e inferior da página causado por conteúdo que podia ultrapassar a largura disponível. A revisão final adiciona contenção horizontal no documento, permite quebra segura de textos e itens de navegação e garante que o cabeçalho e o rodapé ocupem somente a largura do viewport.
+Após a publicação inicial, a versão mobile apresentou conteúdo ultrapassando a largura disponível, especialmente em títulos, textos e no banner principal. A correção foi refinada em duas etapas no `css/style.css`: primeiro foi corrigido o overflow horizontal; depois o layout mobile foi reorganizado estruturalmente para uma coluna, com imagem limitada à largura do container, tipografia responsiva e quebra natural dos textos.
 
-A correção foi aplicada em `css/style.css` e registrada no commit `fix: corrige overflow horizontal no responsivo mobile`. A validação final deve ser feita novamente no navegador móvel após a publicação, incluindo a abertura do menu, a navegação pelas rotas, o formulário e a rolagem vertical completa.
+A correção estrutural final foi registrada no commit `fix: ajusta layout e tipografia para smartphones` e integrada pela PR #8. A versão publicada deve ser validada em smartphone após o deploy, verificando o banner, títulos, textos, menu, navegação, formulário e rolagem vertical.
