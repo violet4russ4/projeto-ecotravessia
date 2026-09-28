@@ -1080,3 +1080,23 @@ main,
         overflow-wrap: anywhere;
     }
 }
+
+
+/* Ajuste definitivo de layout para smartphones */
+@media (max-width: 768px) {
+    main.container { width: calc(100% - 1.5rem); max-width: none; margin-inline: auto; }
+    #app, #app > section { width: 100%; max-width: 100%; min-width: 0; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1fr); width: 100%; min-width: 0; gap: var(--espaco-3); }
+    .hero-imagem-wrap { grid-column: 1; width: 100%; min-width: 0; }
+    .hero-imagem { display: block; width: 100%; max-width: 100%; height: auto; margin-inline: auto; }
+    .hero-conteudo { grid-column: 1; width: 100%; min-width: 0; max-width: 100%; text-align: center; }
+    .hero-conteudo h1, .pagina-cabecalho h1 { width: 100%; max-width: 100%; font-size: clamp(1.9rem, 7.5vw, 2.25rem); line-height: 1.15; overflow-wrap: normal; word-break: normal; }
+    .hero-conteudo p, .pagina-cabecalho > p, .texto-introdutorio { width: 100%; max-width: 100%; font-size: 1rem; line-height: 1.6; overflow-wrap: break-word; word-break: normal; }
+    .pagina-cabecalho, .secao-destaque { width: 100%; max-width: 100%; min-width: 0; }
+}
+@media (max-width: 480px) {
+    main.container { width: calc(100% - 1rem); }
+    .hero-conteudo h1, .pagina-cabecalho h1 { font-size: 1.9rem; }
+    .hero-conteudo p, .pagina-cabecalho > p, .texto-introdutorio { font-size: 1rem; }
+    .hero-imagem { width: 100%; max-width: 100%; }
+}
